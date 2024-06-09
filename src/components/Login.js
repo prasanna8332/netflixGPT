@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { NETFLIX_BACKGROUND } from "../utilities/constants";
 
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../utilities/firebase.config";
+import { useNavigate } from "react-router-dom";
+import Header from "./Header";
 
 const Login = () => {
   const [signIn, setSignIn] = useState("Sign in");
@@ -11,13 +13,23 @@ const Login = () => {
   const [name, setName] = useState("");
   const [errorMessage, seterrorMessage] = useState("");
 
+  const navigate = useNavigate();
+
+
   const handleSignInClick = () => {
     const signInText = signIn === "Sign up" ? "Sign in" : "Sign up";
-
     setSignIn(signInText);
   };
 
   const handleActionButton = () => {
+    if (signIn === "Sign up") {
+      handleSignUp();
+    } else {
+      handleSignIn();
+    }
+  };
+
+  const handleSignUp = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed up
@@ -39,12 +51,27 @@ const Login = () => {
       })
       .catch((error) => {
         console.log(error);
-        seterrorMessage('Email id is already in use');
+        seterrorMessage("Email id is already in use");
       });
+  };
+
+  const handleSignIn = () => {
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      console.log(user);
+      navigate("/browse")
+      // ...
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   };
 
   return (
     <div>
+      <Header />
       <img
         className="absolute -z-10 object-cover w-full h-full"
         src={NETFLIX_BACKGROUND}
