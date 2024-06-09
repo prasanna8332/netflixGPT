@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "netflix-clone-15064"
-  }
+    "default": "netflix-clone-15064",
+    "main netflix": "netflix-aeea8"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
 }
