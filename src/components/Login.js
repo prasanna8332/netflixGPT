@@ -1,11 +1,15 @@
 import React, { useState } from "react";
-
 import { NETFLIX_BACKGROUND } from "../utilities/constants";
+
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from "../utilities/firebase.config";
 
 const Login = () => {
   const [signIn, setSignIn] = useState("Sign in");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [errorMessage, seterrorMessage] = useState("");
 
   const handleSignInClick = () => {
     const signInText = signIn === "Sign up" ? "Sign in" : "Sign up";
@@ -14,7 +18,29 @@ const Login = () => {
   };
 
   const handleActionButton = () => {
-    console.log(email, password);
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed up
+        // const user = userCredential.user;
+        updateProfile(auth.currentUser, {
+          displayName: name,
+          photoURL: "https://example.com/jane-q-user/profile.jpg",
+        })
+          .then(() => {
+            // Profile updated!
+            handleSignInClick();
+            // ...
+          })
+          .catch((error) => {
+            // An error occurred
+            // ...
+          });
+        // ...
+      })
+      .catch((error) => {
+        console.log(error);
+        seterrorMessage('Email id is already in use');
+      });
   };
 
   return (
@@ -54,6 +80,7 @@ const Login = () => {
                 </label>
 
                 <input
+                  onChange={(e) => setName(e.target.value)}
                   className="inline-block w-full p-4 leading-6 text-lg font-extrabold placeholder-white-900 bg-white shadow border-2 border-white-900 rounded"
                   type="text"
                   placeholder="Enter Full name"
@@ -86,11 +113,15 @@ const Login = () => {
               </div>
 
               <div className="w-full lg:w-auto px-4">
-                <p className="inline-block font-extrabold hover:underline">
+                <p className="inline-block text-white font-extrabold hover:underline">
                   Forgot your password?
                 </p>
               </div>
             </div>
+
+            <p className="text-red-500 font-bold text-lg py-2">
+              {errorMessage}
+            </p>
 
             <button
               onClick={handleActionButton}
