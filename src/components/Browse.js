@@ -1,13 +1,16 @@
-import React from 'react'
-import Header from './Header'
+import React from "react";
+import Header from "./Header";
+import SecondaryContainer from "./SecondaryContainer";
+import PrimaryContainer from "./PrimaryContainer";
 
 const Browse = () => {
   return (
     <>
-    <Header />
-    <div>Browse</div>
+      <Header />
+      <PrimaryContainer />
+      <SecondaryContainer />
     </>
-  )
-}
+  );
+};
 
-export default Browse
+export default Browse;

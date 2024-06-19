@@ -13,3 +13,16 @@ export const FIREBASE_CONFIG = {
   appId: "1:896540507182:web:be500ef136c220201873bf",
   measurementId: "G-YFXMWD9WH2",
 };
+
+export const TMDB_API_OPTIONS = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNzY1YjcxOTEwYjdiYjI1NWQxYzdkMzg0MWYwZmVlNiIsInN1YiI6IjY2NTg4ZDQwZGQyOGEyMjI0ZTkzZjA1OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RGlYIB5iIXATnxtpjZcATqFnqid-s_eAqf3C4Sl7sw8",
+  },
+};
+
+export const TMDB_URLS = {
+  populars: "https://api.themoviedb.org/3/movie/popular?language=en-Un&page=1",
+};

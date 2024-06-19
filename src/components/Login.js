@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { NETFLIX_BACKGROUND } from "../utilities/constants";
 
-import { createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  updateProfile,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { auth } from "../utilities/firebase.config";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
+import { useDispatch } from "react-redux";
+import { updateDisplayName, updateEmail } from "../slices/userSlice";
 
 const Login = () => {
   const [signIn, setSignIn] = useState("Sign in");
@@ -14,7 +20,7 @@ const Login = () => {
   const [errorMessage, seterrorMessage] = useState("");
 
   const navigate = useNavigate();
-
+  const disptach = useDispatch();
 
   const handleSignInClick = () => {
     const signInText = signIn === "Sign up" ? "Sign in" : "Sign up";
@@ -57,20 +63,21 @@ const Login = () => {
 
   const handleSignIn = () => {
     signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in 
-      const user = userCredential.user;
-      console.log(user);
-      navigate("/browse")
-      // ...
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        disptach(updateDisplayName(user.displayName));
+        disptach(updateEmail(user.email));
+        navigate("/browse");
+        // ...
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
-    <div>
+    <div className="">
       <Header />
       <img
         className="absolute -z-10 object-cover w-full h-full"
