@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+.yt-video {
+  pointer-events: none;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

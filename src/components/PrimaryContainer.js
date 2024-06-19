@@ -26,8 +26,8 @@ const PrimaryContainer = () => {
   return (
     <div className="">
       <iframe
-        className="w-full aspect-video"
-        src="https://www.youtube.com/embed/yfQ1fTKkYgs?si=CrJyGz2QFip4073I&autoplay=1&mute=1&controls=0"
+        className="w-full aspect-video yt-video"
+        src="https://www.youtube.com/embed/yfQ1fTKkYgs?si=CrJyGz2QFip4073I&autoplay=1&mute=1&controls=0&rel=0"
         title="YouTube video player"
         frameBorder="0"
         referrerPolicy="strict-origin-when-cross-origin"
