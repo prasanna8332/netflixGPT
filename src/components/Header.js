@@ -57,11 +57,6 @@ const Header = () => {
                 Home
               </a>
             </li>
-            {/* <li>
-              <a href="#" className="text-white hover:text-gray-300">
-                Movies
-              </a>
-            </li> */}
             <li>
               <a href="#" className="text-white hover:text-gray-300">
                 TV Shows

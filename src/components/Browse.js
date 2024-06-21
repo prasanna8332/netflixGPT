@@ -7,8 +7,10 @@ const Browse = () => {
   return (
     <>
       <Header />
-      <PrimaryContainer />
-      <SecondaryContainer />
+      <div className="relative bg-black">
+        <PrimaryContainer />
+        <SecondaryContainer />
+      </div>
     </>
   );
 };
