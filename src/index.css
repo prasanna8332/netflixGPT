@@ -1,19 +1,26 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 .yt-video {
   pointer-events: none;
+}
+
+.fixed-header {
+  transition: background-color 0.3s ease;
+  background-color: rgba(0, 0, 0, 0.5); /* Initial transparent background */
+  backdrop-filter: blur(10px); /* Blur effect for background */
+  z-index: 50; /* Ensure it's above other content */
 }
 
 @tailwind base;
